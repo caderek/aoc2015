@@ -16,79 +16,34 @@ const prepareInput = (rawInput: string) =>
 
 const goA = (rawInput: string) => {
   const input = prepareInput(rawInput)
-  const board = math.matrix(math.zeros([1000, 1000]))
+  const board = math.zeros([1000, 1000]) as number[][]
 
   input.forEach(({ type, from, to }) => {
-    const replacement =
-      type === "on"
-        ? math.ones([to[1] - from[1] + 1, to[0] - from[0] + 1])
-        : type === "off"
-        ? math.zeros([to[1] - from[1] + 1, to[0] - from[0] + 1])
-        : math
-            .subset(
-              board,
-              math.index(
-                math.range(from[1], to[1] + 1),
-                math.range(from[0], to[0] + 1),
-              ),
-            )
-            // @ts-ignore
-            .map((x) => (x === 0 ? 1 : 0))
-
-    board.subset(
-      math.index(
-        math.range(from[1], to[1] + 1),
-        math.range(from[0], to[0] + 1),
-      ),
-      replacement,
-    )
-  })
-
-  let lit = 0
-
-  board.forEach((x) => {
-    if (x === 1) {
-      lit++
+    for (let y = from[1]; y <= to[1]; y++) {
+      for (let x = from[0]; x <= to[0]; x++) {
+        board[y][x] =
+          type === "on" ? 1 : type === "off" ? 0 : board[y][x] === 1 ? 0 : 1
+      }
     }
   })
 
-  return lit
+  return board.flat().reduce((a, b) => a + b)
 }
 
 const goB = (rawInput: string) => {
   const input = prepareInput(rawInput)
-  const board = math.matrix(math.zeros([1000, 1000]))
+  const board = math.zeros([1000, 1000]) as number[][]
 
   input.forEach(({ type, from, to }) => {
-    const replacement = math
-      .subset(
-        board,
-        math.index(
-          math.range(from[1], to[1] + 1),
-          math.range(from[0], to[0] + 1),
-        ),
-      )
-      // @ts-ignore
-      .map((x) =>
-        type === "on" ? x + 1 : type === "off" ? Math.max(x - 1, 0) : x + 2,
-      )
-
-    board.subset(
-      math.index(
-        math.range(from[1], to[1] + 1),
-        math.range(from[0], to[0] + 1),
-      ),
-      replacement,
-    )
+    for (let y = from[1]; y <= to[1]; y++) {
+      for (let x = from[0]; x <= to[0]; x++) {
+        board[y][x] +=
+          type === "on" ? 1 : type === "off" ? (board[y][x] === 0 ? 0 : -1) : 2
+      }
+    }
   })
 
-  let brightness = 0
-
-  board.forEach((x) => {
-    brightness += x
-  })
-
-  return brightness
+  return board.flat().reduce((a, b) => a + b)
 }
 
 /* Results */

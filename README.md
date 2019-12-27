@@ -105,7 +105,7 @@ Solution to part 2: 55
 
 day06
 ------------------------------
-Time: 35678.758ms
+Time: 661.969ms
 Solution to part 1: 569999
 Solution to part 2: 17836115
 
