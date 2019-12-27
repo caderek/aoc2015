@@ -1,4 +1,4 @@
-import { readFileSync } from "fs"
+import { readFileSync, existsSync } from "fs"
 import * as getCallerFile from "get-caller-file"
 
 export const readInput = () => {
@@ -8,5 +8,9 @@ export const readInput = () => {
     .concat("input.txt")
     .join("/")
 
-  return readFileSync(file).toString()
+  if (existsSync(file)) {
+    return readFileSync(file).toString()
+  } else {
+    throw new Error("No input file!")
+  }
 }

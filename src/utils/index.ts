@@ -7,6 +7,7 @@ import * as iter from "iter-tools"
 import * as R from "ramda"
 import * as graph from "graphlib"
 import { isDeepStrictEqual } from "util"
+import grid from "./grid"
 
 const log = (data) => console.dir(data, { colors: true, depth: 99 })
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -26,5 +27,6 @@ export {
   log,
   delay,
   equal,
+  grid,
 }
 export default { test, readInput }
