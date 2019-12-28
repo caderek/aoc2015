@@ -1,16 +1,4 @@
-import {
-  test,
-  readInput,
-  arr,
-  com,
-  mul,
-  dis,
-  math,
-  iter,
-  R,
-  graph,
-  log,
-} from "../utils/index"
+import { test, readInput, math } from "../utils/index"
 
 const getMem = (mem) => {
   const recur = (x) =>
@@ -24,6 +12,13 @@ const getMem = (mem) => {
 }
 
 const set = (x) => (Number.isNaN(Number(x)) ? x : Number(x))
+
+const calculations = {
+  AND: (a, b) => a & b,
+  OR: (a, b) => a | b,
+  LSHIFT: (a, b) => a << b,
+  RSHIFT: (a, b) => a >> b,
+}
 
 const compute = (source: string, mem = {}) => {
   const program = source.split("\n").map((line) => {
@@ -42,64 +37,40 @@ const compute = (source: string, mem = {}) => {
 
   const MODULUS = 65536
   const get = getMem(mem)
-
   const done = new Set()
 
   while (done.size !== program.length) {
     program.forEach(({ op, a, b, c }, index) => {
+      if (done.has(index)) {
+        return
+      }
+
       switch (op) {
         case "LINK": {
           mem[c] = set(a)
           done.add(index)
           break
         }
-        case "AND": {
-          if (
-            !done.has(index) &&
-            get(a) !== undefined &&
-            get(b) !== undefined
-          ) {
-            mem[c] = math.mod(get(a) & get(b), MODULUS)
-            done.add(index)
-          }
-          break
-        }
-        case "OR": {
-          if (
-            !done.has(index) &&
-            get(a) !== undefined &&
-            get(b) !== undefined
-          ) {
-            mem[c] = math.mod(get(a) | get(b), MODULUS)
-            done.add(index)
-          }
-          break
-        }
-        case "LSHIFT": {
-          if (
-            !done.has(index) &&
-            get(a) !== undefined &&
-            get(b) !== undefined
-          ) {
-            mem[c] = math.mod(get(a) << get(b), MODULUS)
-            done.add(index)
-          }
-          break
-        }
+
+        case "AND":
+        case "OR":
+        case "LSHIFT":
         case "RSHIFT": {
-          if (
-            !done.has(index) &&
-            get(a) !== undefined &&
-            get(b) !== undefined
-          ) {
-            mem[c] = math.mod(get(a) >> get(b), MODULUS)
+          const x = get(a)
+          const y = get(b)
+
+          if (x !== undefined && y !== undefined) {
+            mem[c] = math.mod(calculations[op](x, y), MODULUS)
             done.add(index)
           }
           break
         }
+
         case "NOT": {
-          if (!done.has(index) && get(a) !== undefined) {
-            mem[c] = math.mod(~get(a), MODULUS)
+          const x = get(a)
+
+          if (x !== undefined) {
+            mem[c] = math.mod(~x, MODULUS)
             done.add(index)
           }
           break
