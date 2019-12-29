@@ -13,7 +13,7 @@
 [![Day](https://badgen.net/badge/09/%E2%98%85%E2%98%85/blue)](src/day09)
 [![Day](https://badgen.net/badge/10/%E2%98%85%E2%98%85/blue)](src/day10)
 [![Day](https://badgen.net/badge/11/%E2%98%85%E2%98%85/blue)](src/day11)
-[![Day](https://badgen.net/badge/12/%E2%98%86%E2%98%86/red)](src/day12)
+[![Day](https://badgen.net/badge/12/%E2%98%85%E2%98%85/blue)](src/day12)
 [![Day](https://badgen.net/badge/13/%E2%98%86%E2%98%86/red)](src/day13)
 [![Day](https://badgen.net/badge/14/%E2%98%86%E2%98%86/red)](src/day14)
 [![Day](https://badgen.net/badge/15/%E2%98%86%E2%98%86/red)](src/day15)
@@ -141,6 +141,9 @@ Solution to part 2: cqkaabcc
 
 day12
 ------------------------------
+Time: 1.664ms
+Solution to part 1: 111754
+Solution to part 2: 65402
 
 day13
 ------------------------------
