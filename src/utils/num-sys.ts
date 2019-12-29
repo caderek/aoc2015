@@ -1,14 +1,14 @@
-const numSys = (symbols: string) => {
-  const radix = symbols.length
-  const values = Object.fromEntries(symbols.split("").map((x, i) => [x, i]))
+const numSys = (symbols: string | any[]) => {
+  symbols = Array.isArray(symbols) ? symbols : symbols.split("")
 
-  return (num: string) => {
-    let x = num
-      .split("")
-      .reduce(
-        (sum, next, i) => sum + values[next] * radix ** (num.length - i - 1),
-        0,
-      )
+  const radix = symbols.length
+  const values = Object.fromEntries(symbols.map((x, i) => [x, i]))
+
+  return (num: string | any[]) => {
+    let x = (Array.isArray(num) ? num : num.split("")).reduce(
+      (sum, next, i) => sum + values[next] * radix ** (num.length - i - 1),
+      0,
+    )
 
     const pub = {
       increment() {

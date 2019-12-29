@@ -43,5 +43,5 @@ const resultA = goA(input)
 const resultB = goB(input)
 console.timeEnd("Time")
 
-console.log("Solution to part 1:", resultA)
-console.log("Solution to part 2:", resultB)
+console.log("Solution to part 1:", resultA) // -> cqjxxyzz
+console.log("Solution to part 2:", resultB) // -> cqkaabcc
