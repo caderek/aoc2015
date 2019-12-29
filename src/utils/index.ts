@@ -8,6 +8,7 @@ import * as R from "ramda"
 import * as graph from "graphlib"
 import { isDeepStrictEqual } from "util"
 import grid from "./grid"
+import numSys from "./num-sys"
 
 const log = (data) => console.dir(data, { colors: true, depth: 99 })
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -28,5 +29,6 @@ export {
   delay,
   equal,
   grid,
+  numSys,
 }
 export default { test, readInput }
