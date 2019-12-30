@@ -9,6 +9,7 @@ import * as graph from "graphlib"
 import { isDeepStrictEqual } from "util"
 import grid from "./grid"
 import numSys from "./num-sys"
+import * as gen from "generatorics"
 
 const log = (data) => console.dir(data, { colors: true, depth: 99 })
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -30,5 +31,6 @@ export {
   equal,
   grid,
   numSys,
+  gen,
 }
 export default { test, readInput }

@@ -6,10 +6,11 @@ import {
   mul,
   dis,
   math,
-  iter,
   R,
   graph,
   log,
+  equal,
+  gen,
 } from "../utils/index"
 
 const prepareInput = (rawInput: string) => rawInput
