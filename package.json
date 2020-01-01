@@ -35,6 +35,7 @@
     "lodash": "^4.17.15",
     "log-update": "^3.3.0",
     "mathjs": "^6.2.5",
+    "primes-and-factors": "^1.3.3",
     "ramda": "^0.26.1"
   }
 }
