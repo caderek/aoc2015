@@ -11,7 +11,7 @@ import {
   log,
   equal,
   gen,
-} from "../utils/index"
+} from "../../utils/index"
 
 const prepareInput = (rawInput: string) => rawInput
 

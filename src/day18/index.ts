@@ -1,18 +1,18 @@
-import { readInput, grid } from "../utils/index"
+import { readInput, grid } from "../../utils/index"
 
 const goA = (rawInput: string) => {
-  const g = grid().from(rawInput)
+  let g = grid.from(rawInput)
 
   for (let i = 0; i < 100; i++) {
-    const temp = grid(g.width, g.height).raw
+    const temp = grid.create(g.width, g.height)
 
     for (let y = 0; y < g.width; y++) {
       for (let x = 0; x < g.height; x++) {
-        const neighbors = g
-          .neighborsWithDiagonals(x, y)
+        const neighbors = grid
+          .neighborsWithDiagonals(x, y, g)
           .filter((n) => n === "#").length
 
-        const cell = g.raw[y][x]
+        const cell = g[y][x]
 
         temp[y][x] =
           (cell === "#" && (neighbors === 2 || neighbors === 3)) ||
@@ -22,29 +22,29 @@ const goA = (rawInput: string) => {
       }
     }
 
-    g.raw = temp
+    g = temp
   }
 
-  return g.raw.flat().filter((x) => x === "#").length
+  return g.flat().filter((x) => x === "#").length
 }
 
 const goB = (rawInput: string) => {
-  const g = grid().from(rawInput)
-  g.raw[0][0] = "#"
-  g.raw[0][99] = "#"
-  g.raw[99][0] = "#"
-  g.raw[99][99] = "#"
+  let g = grid.from(rawInput)
+  g[0][0] = "#"
+  g[0][99] = "#"
+  g[99][0] = "#"
+  g[99][99] = "#"
 
   for (let i = 0; i < 100; i++) {
-    const temp = grid(g.width, g.height).raw
+    const temp = grid.create(g.width, g.height)
 
     for (let y = 0; y < g.width; y++) {
       for (let x = 0; x < g.height; x++) {
-        const neighbors = g
-          .neighborsWithDiagonals(x, y)
+        const neighbors = grid
+          .neighborsWithDiagonals(x, y, g)
           .filter((n) => n === "#").length
 
-        const cell = g.raw[y][x]
+        const cell = g[y][x]
 
         temp[y][x] =
           (cell === "#" && (neighbors === 2 || neighbors === 3)) ||
@@ -58,10 +58,10 @@ const goB = (rawInput: string) => {
     temp[0][99] = "#"
     temp[99][0] = "#"
     temp[99][99] = "#"
-    g.raw = temp
+    g = temp
   }
 
-  return g.raw.flat().filter((x) => x === "#").length
+  return g.flat().filter((x) => x === "#").length
 }
 
 const input = readInput()

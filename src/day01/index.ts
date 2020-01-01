@@ -1,4 +1,4 @@
-import { readInput } from "../utils/index"
+import { readInput } from "../../utils/index"
 
 const goA = (input: string) => {
   const left = input.split("").filter((x) => x === "(").length

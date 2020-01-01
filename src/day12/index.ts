@@ -1,4 +1,4 @@
-import { readInput } from "../utils/index"
+import { readInput } from "../../utils/index"
 
 const goA = (rawInput: string) => {
   return rawInput

@@ -1,4 +1,4 @@
-import { readInput, iter, R } from "../utils/index"
+import { readInput, iter, R } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput

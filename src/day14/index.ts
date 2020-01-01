@@ -1,4 +1,4 @@
-import { readInput, arr } from "../utils/index"
+import { readInput, arr } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput

@@ -1,4 +1,4 @@
-import { readInput, math } from "../utils/index"
+import { readInput, math } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput.split("\n").map((line) => {

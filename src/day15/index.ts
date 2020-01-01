@@ -1,4 +1,4 @@
-import { readInput, arr, numSys } from "../utils/index"
+import { readInput, arr, numSys } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput.split("\n").map((line) => line.match(/-?\d+/g).map(Number))

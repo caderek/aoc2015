@@ -10,7 +10,7 @@ import {
   R,
   graph,
   log,
-} from "../utils/index"
+} from "../../utils/index"
 
 const prepareInput = (rawInput: string) => rawInput.split("")
 

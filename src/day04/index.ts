@@ -10,7 +10,7 @@ import {
   R,
   graph,
   log,
-} from "../utils/index"
+} from "../../utils/index"
 import { createHash } from "crypto"
 
 const prepareInput = (rawInput: string) => rawInput

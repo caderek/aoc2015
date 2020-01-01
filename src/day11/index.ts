@@ -1,4 +1,4 @@
-import { readInput, R, numSys } from "../utils/index"
+import { readInput, R, numSys } from "../../utils/index"
 
 const alphaNum = numSys("abcdefghijklmnopqrstuwvxyz")
 

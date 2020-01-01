@@ -1,4 +1,4 @@
-import { readInput } from "../utils/index"
+import { readInput } from "../../utils/index"
 
 const go = (input: string, repeats: number) => {
   let current = input.split("").map(Number)

@@ -1,4 +1,4 @@
-import { test, readInput, math } from "../utils/index"
+import { test, readInput, math } from "../../utils/index"
 
 const getMem = (mem) => {
   const recur = (x) =>
