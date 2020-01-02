@@ -25,7 +25,7 @@
 [![Day](https://badgen.net/badge/21/%E2%98%85%E2%98%85/blue)](src/day21)
 [![Day](https://badgen.net/badge/22/%E2%98%86%E2%98%86/red)](src/day22)
 [![Day](https://badgen.net/badge/23/%E2%98%85%E2%98%85/blue)](src/day23)
-[![Day](https://badgen.net/badge/24/%E2%98%86%E2%98%86/red)](src/day24)
+[![Day](https://badgen.net/badge/24/%E2%98%85%E2%98%85/blue)](src/day24)
 [![Day](https://badgen.net/badge/25/%E2%98%86%E2%98%86/red)](src/day25)
 
 ## Join my leaderboard
@@ -210,6 +210,9 @@ Solution to part 2: 160
 
 day24
 ------------------------------
+Time: 298.735ms
+Solution to part 1: 11266889531
+Solution to part 2: 77387711
 
 day25
 ------------------------------
