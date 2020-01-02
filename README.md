@@ -22,7 +22,7 @@
 [![Day](https://badgen.net/badge/18/%E2%98%85%E2%98%85/blue)](src/day18)
 [![Day](https://badgen.net/badge/19/%E2%98%85%E2%98%85/blue)](src/day19)
 [![Day](https://badgen.net/badge/20/%E2%98%85%E2%98%85/blue)](src/day20)
-[![Day](https://badgen.net/badge/21/%E2%98%86%E2%98%86/red)](src/day21)
+[![Day](https://badgen.net/badge/21/%E2%98%85%E2%98%85/blue)](src/day21)
 [![Day](https://badgen.net/badge/22/%E2%98%86%E2%98%86/red)](src/day22)
 [![Day](https://badgen.net/badge/23/%E2%98%86%E2%98%86/red)](src/day23)
 [![Day](https://badgen.net/badge/24/%E2%98%86%E2%98%86/red)](src/day24)
@@ -195,6 +195,9 @@ Solution to part 2: 831600
 
 day21
 ------------------------------
+Time: 5.324ms
+Solution to part 1: 78
+Solution to part 2: 148
 
 day22
 ------------------------------
