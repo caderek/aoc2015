@@ -26,7 +26,7 @@
 [![Day](https://badgen.net/badge/22/%E2%98%86%E2%98%86/red)](src/day22)
 [![Day](https://badgen.net/badge/23/%E2%98%85%E2%98%85/blue)](src/day23)
 [![Day](https://badgen.net/badge/24/%E2%98%85%E2%98%85/blue)](src/day24)
-[![Day](https://badgen.net/badge/25/%E2%98%86%E2%98%86/red)](src/day25)
+[![Day](https://badgen.net/badge/25/%E2%98%85%E2%98%86/yellow)](src/day25)
 
 ## Join my leaderboard
 
@@ -216,4 +216,6 @@ Solution to part 2: 77387711
 
 day25
 ------------------------------
+Time: 212.842ms
+Solution: 2650453
 ```
