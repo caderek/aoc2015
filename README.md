@@ -195,7 +195,7 @@ Solution to part 2: 831600
 
 day21
 ------------------------------
-Time: 5.324ms
+Time: 3.628ms
 Solution to part 1: 78
 Solution to part 2: 148
 

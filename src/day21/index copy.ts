@@ -1,9 +1,9 @@
-import { readInput, gen } from "../../utils/index"
+import { readInput, arr, gen } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput
-    .match(/\d+/g)
-    .map(Number)
+    .split("\n")
+    .map((line) => Number(arr.last_(line.split(" "))))
     .chain(([hp, damage, armor]) => ({ hp, damage, armor }))
 
 const shop = `
@@ -31,13 +31,26 @@ Defense+3   80     0       3
 `
   .trim()
   .split("\n\n")
-  .map((category) =>
-    category
-      .split("\n")
+  .map((category) => {
+    const lines = category.split("\n")
+    const categoryName = lines[0]
+      .split(" ")[0]
+      .trim()
+      .slice(0, -1)
+
+    const items = lines
       .slice(1)
-      .map((line) => line.match(/ \d+/g).map(Number))
-      .map(([cost, damage, armor]) => ({ cost, damage, armor })),
-  )
+      .map((line) => line.split(" ").filter((x) => x.trim().length !== 0))
+      .map(([name, cost, damage, armor]) => ({
+        name,
+        cost: Number(cost),
+        damage: Number(damage),
+        armor: Number(armor),
+      }))
+
+    return [categoryName, items]
+  })
+  .chain(Object.fromEntries)
 
 const fight = (boss, player) => {
   const playerDamage = Math.max(player.damage - boss.armor, 1)
@@ -51,12 +64,11 @@ const fight = (boss, player) => {
 
 const go = (rawInput: string) => {
   const boss = prepareInput(rawInput)
-  const [weapons, armor, rings] = shop
 
-  const variations = gen.cartesian(weapons, armor.concat(null), [
-    ...rings,
+  const variations = gen.cartesian(shop.Weapons, shop.Armor.concat(null), [
+    ...shop.Rings,
     null,
-    ...gen.clone.combination(rings, 2),
+    ...gen.clone.combination(shop.Rings, 2),
   ])
 
   const costs = { won: [], lost: [] }
