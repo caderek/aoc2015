@@ -1,21 +1,13 @@
-import { readInput, arr, numSys } from "../../utils/index"
+import { readInput, arr, gen } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput.split("\n").map((line) => line.match(/-?\d+/g).map(Number))
 
 const go = (rawInput: string, calCond = (cal: number) => true) => {
   const input = prepareInput(rawInput)
-  const hundreds = numSys(arr.range_(0, 101))([0])
   let max = 0
 
-  while (true) {
-    const raw = hundreds.increment().getRaw()
-
-    if (raw.length === 4) {
-      return max
-    }
-
-    const [a, b, c] = [0, 0, 0].concat(raw).slice(-3)
+  for (const [a, b, c] of gen.baseN(arr.range_(0, 101), 3)) {
     const d = 100 - (a + b + c)
 
     if (d < 0) {
@@ -38,6 +30,8 @@ const go = (rawInput: string, calCond = (cal: number) => true) => {
 
     max = score > max && calCond(ingredients[4]) ? score : max
   }
+
+  return max
 }
 
 /* Results */
