@@ -3,7 +3,6 @@ import { test } from "./test"
 import { readInput } from "./readInput"
 import { arr, com, mul, dis } from "@arrows/arrows"
 import * as math from "mathjs"
-import * as iter from "iter-tools"
 import * as R from "ramda"
 import * as graph from "graphlib"
 import { isDeepStrictEqual } from "util"
@@ -23,7 +22,6 @@ export {
   mul,
   dis,
   math,
-  iter,
   R,
   graph,
   log,

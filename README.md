@@ -93,7 +93,7 @@ Solution to part 2: 2639
 
 day04
 ------------------------------
-Time: 28912.720ms
+Time: 26983.488ms
 Solution to part 1: 346386
 Solution to part 2: 9958218
 
@@ -123,7 +123,7 @@ Solution to part 2: 2117
 
 day09
 ------------------------------
-Time: 30358.671ms
+Time: 162.693ms
 Solution to part 1: 117
 Solution to part 2: 909
 
@@ -147,7 +147,7 @@ Solution to part 2: 65402
 
 day13
 ------------------------------
-Time: 59599.310ms
+Time: 424.162ms
 Solution to part 1: 664
 Solution to part 2: 640
 

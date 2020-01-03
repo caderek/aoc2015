@@ -1,16 +1,4 @@
-import {
-  test,
-  readInput,
-  arr,
-  com,
-  mul,
-  dis,
-  math,
-  iter,
-  R,
-  graph,
-  log,
-} from "../../utils/index"
+import { readInput, arr } from "../../utils/index"
 
 const prepareInput = (rawInput: string) => rawInput.split("")
 

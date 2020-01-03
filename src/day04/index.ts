@@ -1,43 +1,15 @@
-import {
-  test,
-  readInput,
-  arr,
-  com,
-  mul,
-  dis,
-  math,
-  iter,
-  R,
-  graph,
-  log,
-} from "../../utils/index"
+import { readInput } from "../../utils/index"
 import { createHash } from "crypto"
 
-const prepareInput = (rawInput: string) => rawInput
-
-const goA = (rawInput: string) => {
-  let i = 1
+const go = (input: string, target: string, start = 1) => {
+  let i = start
 
   while (i++) {
     const hash = createHash("md5")
-      .update(rawInput + i)
+      .update(input + i)
       .digest("hex")
 
-    if (hash.startsWith("00000")) {
-      return i
-    }
-  }
-}
-
-const goB = (rawInput: string) => {
-  let i = 1
-
-  while (i++) {
-    const hash = createHash("md5")
-      .update(rawInput + i)
-      .digest("hex")
-
-    if (hash.startsWith("000000")) {
+    if (hash.startsWith(target)) {
       return i
     }
   }
@@ -48,8 +20,8 @@ const goB = (rawInput: string) => {
 const input = readInput()
 
 console.time("Time")
-const resultA = goA(input)
-const resultB = goB(input)
+const resultA = go(input, "00000")
+const resultB = go(input, "000000", resultA)
 console.timeEnd("Time")
 
 console.log("Solution to part 1:", resultA) // -> 346386

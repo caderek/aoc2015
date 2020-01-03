@@ -1,4 +1,4 @@
-import { readInput, iter, R } from "../../utils/index"
+import { readInput, gen, R } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput
@@ -19,7 +19,7 @@ const goA = (rawInput: string) => {
 
   const results = []
 
-  for (const p of iter.permutations(names)) {
+  for (const p of gen.permutation(names)) {
     const result = R.aperture(2, p)
       .concat([[p[p.length - 1], p[0]]])
       .map(([l, r]) => happiness[`${l}:${r}`] + happiness[`${r}:${l}`])
@@ -40,7 +40,7 @@ const goB = (rawInput: string) => {
 
   const results = []
 
-  for (const p of iter.permutations(names)) {
+  for (const p of gen.permutation(names)) {
     const result = R.aperture(2, p)
       .map(([l, r]) => happiness[`${l}:${r}`] + happiness[`${r}:${l}`])
       .reduce((a, b) => a + b)

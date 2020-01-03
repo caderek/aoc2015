@@ -1,4 +1,4 @@
-import { readInput, iter, R } from "../../utils/index"
+import { readInput, R, gen } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput.split("\n").map((line) => {
@@ -21,7 +21,7 @@ const go = (rawInput: string) => {
 
   const distances = []
 
-  for (const path of iter.permutations(places)) {
+  for (const path of gen.permutation(places)) {
     distances.push(
       R.aperture(2, path)
         .map(([from, to]) => edges[`${from}:${to}`])

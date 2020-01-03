@@ -30,7 +30,6 @@
     "generatorics": "^1.1.0",
     "get-caller-file": "^2.0.5",
     "graphlib": "^2.1.8",
-    "iter-tools": "^6.2.6",
     "kleur": "^3.0.3",
     "lodash": "^4.17.15",
     "log-update": "^3.3.0",
