@@ -1,18 +1,4 @@
-import {
-  test,
-  readInput,
-  arr,
-  com,
-  mul,
-  dis,
-  math,
-  R,
-  graph,
-  log,
-  equal,
-  gen,
-} from "../../utils/index"
-import { WSA_E_NO_MORE } from "constants"
+import { test, readInput } from "../../utils/index"
 
 const prepareInput = (rawInput: string) =>
   rawInput
@@ -20,49 +6,112 @@ const prepareInput = (rawInput: string) =>
     .map(Number)
     .chain(([hp, damage]) => ({ hp, damage }))
 
-const spells = [
-  { cost: 53, damage: 4, armor: 0, lasts: 0, hp: 0, mana: 0 },
-  { cost: 73, damage: 2, armor: 0, lasts: 0, hp: 2, mana: 0 },
-  { cost: 113, damage: 0, armor: 7, lasts: 6, hp: 0, mana: 0 },
-  { cost: 173, damage: 3, armor: 0, lasts: 6, hp: 0, mana: 0 },
-  { cost: 229, damage: 0, armor: 0, lasts: 5, hp: 0, mana: 101 },
-]
+const spells = {
+  missile: { cost: 53, damage: 4, armor: 0, lasts: 0, hp: 0, mana: 0 },
+  drain: { cost: 73, damage: 2, armor: 0, lasts: 0, hp: 2, mana: 0 },
+  shield: { cost: 113, damage: 0, armor: 7, lasts: 6, hp: 0, mana: 0 },
+  poison: { cost: 173, damage: 3, armor: 0, lasts: 6, hp: 0, mana: 0 },
+  recharge: { cost: 229, damage: 0, armor: 0, lasts: 5, hp: 0, mana: 101 },
+}
 
-log([...gen.cartesian(...R.repeat(spells, 2))].length)
+const go = (player, boss, bossHandicap = 0) => {
+  let minCost = Infinity
 
-const goA = (rawInput: string) => {
-  const boss = prepareInput(rawInput)
-  const player = { hp: 50, mana: 500, damage: 0, armor: 0 }
+  const recur = (mana, playerHP, bossHP, cost, shield, poison, recharge) => {
+    playerHP -= bossHandicap
 
-  const costs = { won: [], lost: [] }
-  let len = 1
-
-  while (costs.won.length === 0) {
-    for (const scenario of gen.cartesian(...R.repeat(spells, len))) {
-      console.log(scenario)
+    if (playerHP <= 0) {
+      return
     }
 
-    len++
+    const availableSpells = ["missile"]
+      .concat(mana >= spells.drain.cost ? "drain" : [])
+      .concat(shield <= 1 && mana >= spells.shield.cost ? "shield" : [])
+      .concat(poison <= 1 && mana >= spells.poison.cost ? "poison" : [])
+      .concat(recharge === 0 && mana >= spells.recharge.cost ? "recharge" : [])
+
+    let damage = 0
+    let armor = 0
+
+    if (shield > 1) {
+      armor = 7
+    }
+
+    if (poison !== 0) {
+      damage += 3 * Math.min(poison, 2)
+    }
+
+    if (recharge !== 0) {
+      mana += 101 * Math.min(recharge, 2)
+    }
+
+    poison = Math.max(poison - 2, 0)
+    shield = Math.max(shield - 2, 0)
+    recharge = Math.max(recharge - 2, 0)
+
+    availableSpells.forEach((spell) => {
+      const nextMana = mana + spells[spell].mana - spells[spell].cost
+      const nextCost = cost + spells[spell].cost
+      const nextShield = spell === "shield" ? spells.shield.lasts - 1 : shield
+      const nextPoison = spell === "poison" ? spells.poison.lasts - 1 : poison
+      const nextRecharge =
+        spell === "recharge" ? spells.recharge.lasts - 1 : recharge
+
+      const nextDamage =
+        spell === "missile"
+          ? damage + 4
+          : spell === "drain"
+          ? damage + 2
+          : spell === "poison"
+          ? damage + 3
+          : damage
+
+      const nextArmor = spell === "shield" ? 7 : armor
+
+      const nextBossHP = bossHP - nextDamage
+      const nextPlayerHP =
+        playerHP + spells[spell].hp - Math.max(boss.damage - nextArmor, 1)
+
+      if (nextBossHP <= 0) {
+        minCost = Math.min(minCost, nextCost)
+        return
+      }
+
+      if (nextPlayerHP <= 0 || nextMana < 53 || nextCost + 53 > minCost) {
+        return
+      }
+
+      recur(
+        nextMana,
+        nextPlayerHP,
+        nextBossHP,
+        nextCost,
+        nextShield,
+        nextPoison,
+        nextRecharge,
+      )
+    })
   }
-  console.log({ spells, player, boss })
 
-  return
+  recur(player.mana, player.hp, boss.hp, 0, 0, 0, 0)
+
+  return minCost
 }
 
-const goB = (rawInput: string) => {
-  const input = prepareInput(rawInput)
+/* Tests */
 
-  return
-}
+test(go({ hp: 10, mana: 250 }, { hp: 13, damage: 8 }), 226)
+test(go({ hp: 10, mana: 250 }, { hp: 14, damage: 8 }), 641)
 
 /* Results */
 
-const input = readInput()
+const player = { hp: 50, mana: 500 }
+const boss = prepareInput(readInput())
 
 console.time("Time")
-const resultA = goA(input)
-const resultB = goB(input)
+const resultA = go(player, boss)
+const resultB = go(player, boss, 1)
 console.timeEnd("Time")
 
-console.log("Solution to part 1:", resultA)
-console.log("Solution to part 2:", resultB)
+console.log("Solution to part 1:", resultA) // -> 953
+console.log("Solution to part 2:", resultB) // 1289
