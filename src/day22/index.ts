@@ -115,4 +115,4 @@ const resultB = go(player, boss, 1)
 console.timeEnd("Time")
 
 console.log("Solution to part 1:", resultA) // -> 953
-console.log("Solution to part 2:", resultB) // 1289
+console.log("Solution to part 2:", resultB) // -> 1289
