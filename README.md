@@ -1,6 +1,6 @@
 # 🎄 Advent of Code 2015 solutions (TypeScript) 🎄
 
-## Completed
+## Completed (all!)
 
 [![Day](https://badgen.net/badge/01/%E2%98%85%E2%98%85/blue)](src/day01)
 [![Day](https://badgen.net/badge/02/%E2%98%85%E2%98%85/blue)](src/day02)
@@ -23,10 +23,10 @@
 [![Day](https://badgen.net/badge/19/%E2%98%85%E2%98%85/blue)](src/day19)
 [![Day](https://badgen.net/badge/20/%E2%98%85%E2%98%85/blue)](src/day20)
 [![Day](https://badgen.net/badge/21/%E2%98%85%E2%98%85/blue)](src/day21)
-[![Day](https://badgen.net/badge/22/%E2%98%86%E2%98%86/red)](src/day22)
+[![Day](https://badgen.net/badge/22/%E2%98%85%E2%98%85/blue)](src/day22)
 [![Day](https://badgen.net/badge/23/%E2%98%85%E2%98%85/blue)](src/day23)
 [![Day](https://badgen.net/badge/24/%E2%98%85%E2%98%85/blue)](src/day24)
-[![Day](https://badgen.net/badge/25/%E2%98%85%E2%98%86/yellow)](src/day25)
+[![Day](https://badgen.net/badge/25/%E2%98%85%E2%98%85/blue)](src/day25)
 
 ## Join my leaderboard
 
@@ -201,6 +201,9 @@ Solution to part 2: 148
 
 day22
 ------------------------------
+Time: 115.846ms
+Solution to part 1: 953
+Solution to part 2: 1289
 
 day23
 ------------------------------

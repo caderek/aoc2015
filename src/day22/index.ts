@@ -24,11 +24,12 @@ const go = (player, boss, bossHandicap = 0) => {
       return
     }
 
-    const availableSpells = ["missile"]
-      .concat(mana >= spells.drain.cost ? "drain" : [])
-      .concat(shield <= 1 && mana >= spells.shield.cost ? "shield" : [])
-      .concat(poison <= 1 && mana >= spells.poison.cost ? "poison" : [])
-      .concat(recharge === 0 && mana >= spells.recharge.cost ? "recharge" : [])
+    const allowed = ["missile"]
+
+    if (mana >= spells.drain.cost) allowed.push("drain")
+    if (shield <= 1 && mana >= spells.shield.cost) allowed.push("shield")
+    if (poison <= 1 && mana >= spells.poison.cost) allowed.push("poison")
+    if (recharge === 0 && mana >= spells.recharge.cost) allowed.push("recharge")
 
     let damage = 0
     let armor = 0
@@ -49,7 +50,7 @@ const go = (player, boss, bossHandicap = 0) => {
     shield = Math.max(shield - 2, 0)
     recharge = Math.max(recharge - 2, 0)
 
-    availableSpells.forEach((spell) => {
+    allowed.forEach((spell) => {
       const nextMana = mana + spells[spell].mana - spells[spell].cost
       const nextCost = cost + spells[spell].cost
       const nextShield = spell === "shield" ? spells.shield.lasts - 1 : shield
